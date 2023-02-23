@@ -25,14 +25,11 @@ export class Phonebook extends Component {
     }
   };
 
-  deleteContact = e => {
-    const { id } = e.target;
-    const contactId = this.state.contacts.findIndex(el => el.id === id);
-
+  deleteContact = nameForDelete => {
     this.setState(prevState => {
-      prevState.contacts.splice(contactId, 1);
-
-      return { contacts: [...prevState.contacts] };
+      return {
+        contacts: prevState.contacts.filter(el => el.name !== nameForDelete),
+      };
     });
   };
 

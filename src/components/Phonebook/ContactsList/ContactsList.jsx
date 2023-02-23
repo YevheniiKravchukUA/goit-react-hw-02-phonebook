@@ -4,9 +4,9 @@ import css from 'components/Phonebook/ContactsList/ContactsList.module.css';
 export function ContactsList({ contacts, deleteContact }) {
   return (
     <ul className={`${css.list}`}>
-      {contacts.map(({ id, name, number }) => {
+      {contacts.map(({ name, number }) => {
         return (
-          <li className={`${css.item}`} key={id}>
+          <li className={`${css.item}`} key={name}>
             <div className={`${css.textWrapper}`}>
               <p className={`${css.text}`}>{name}:</p>
               <p className={`${css.text}`}>{number}</p>
@@ -15,8 +15,10 @@ export function ContactsList({ contacts, deleteContact }) {
             <button
               className={`${css.button}`}
               type="button"
-              id={id}
-              onClick={deleteContact}
+              id={name}
+              onClick={() => {
+                deleteContact(name);
+              }}
             >
               Delete
             </button>
